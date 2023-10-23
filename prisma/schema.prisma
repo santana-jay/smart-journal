@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+// model Entry {
+//   id Int @default(autoincrement()) @id
+//   title String
+//   content String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   author User @relation(fields: [authorId], references: [id])
+//   authorId String
+
+//   @@index([authorId])
+// }
+
+// model User {
+//   id        String @default(uuid())@unique @id
+//   email     String   @unique
+//   name      String?
+//   password  String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   entry     Entry[]
+// }
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clerkId String         @unique
+  email   String         @unique
+  entries JournalEntry[]
+}
+
+model JournalEntry {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+
+  // "field" references an field in the User model.
+  // "references" references the id field in the User model (the model you are trying to reference)
+  user User @relation(fields: [userId], references: [id])
+
+  content String @db.Text
+
+  // a "?" means that the field is optional
+  analysis Analysis?
+
+  @@index([userId])
+}
+
+model Analysis {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  entryId String
+  entry   JournalEntry @relation(fields: [entryId], references: [id])
+
+  mood     String
+  summary  String  @db.Text
+  color    String
+  negative Boolean
+
+  @@unique([entryId])
+}
