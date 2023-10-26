@@ -59,7 +59,7 @@ model JournalEntry {
   // a "?" means that the field is optional
   analysis Analysis?
 
-  @@index([userId])
+  @@unique([userId, id])
 }
 
 model Analysis {
