@@ -1,15 +1,16 @@
 import { OpenAI } from 'langchain/llms/openai'
 import z from 'zod'
-import {StructuredOutputParser} from 'langchain/output_parsers'
+import { StructuredOutputParser } from 'langchain/output_parsers'
 import { PromptTemplate } from 'langchain/prompts'
-import {Document} from 'langchain/document'
-import {loadQARefineChain} from 'langchain/chains'
+import { Document } from 'langchain/document'
+import { loadQARefineChain } from 'langchain/chains'
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
-import {MemoryVectorStore} from 'langchain/vectorstores/memory'
+import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 
 
 const parser = StructuredOutputParser.fromZodSchema(
     z.object({
+        sentimentScore: z.number().describe('Sentiment of the text and rated on a scale from -10 to 10, where -10 is the most negative and 10 is the most positive.'),
         subject: z.string().describe('The subject of the journal entry'),
         mood: z.string().describe('The mood of the person who wrote the entry'),
         summary: z.string().describe('Quick summary of the entry'),
@@ -48,11 +49,11 @@ export const analyze = async (content) => {
 
 }
 
-const qa = async (question, entries) => {
+export const qa = async (question, entries) => {
     const docs = entries.map((entry) => {
-        new Document({
+        return new Document({
             pageContent: entry.content,
-            metadata: { id: entry.id, createAt: entry.createdAt },
+            metadata: { id: entry.id, createdAt: entry.createdAt },
         })
     })
 
