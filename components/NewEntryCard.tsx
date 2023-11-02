@@ -1,4 +1,9 @@
+//  'use client' is a special comment that tells Vercel to only run this code on the client side.
+// This is important because the code inside this component uses the browser's localStorage API to store the value of the editor.
+// explain 'use client': https://vercel.com/docs/platform/limits#serverless-function-size-limit
 'use client'
+
+// This component is used to display the content of the entry
 
 import { createNewEntry } from "@/utils/api"
 import { useRouter } from "next/navigation"

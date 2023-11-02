@@ -1,3 +1,5 @@
+//  This component is used to display the content of the entry
+
 const EntryCard = ({entry}) => {
     const date = new Date(entry.createdAt).toDateString()
 

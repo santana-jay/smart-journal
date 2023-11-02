@@ -11,28 +11,6 @@ datasource db {
   relationMode = "prisma"
 }
 
-// model Entry {
-//   id Int @default(autoincrement()) @id
-//   title String
-//   content String
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   author User @relation(fields: [authorId], references: [id])
-//   authorId String
-
-//   @@index([authorId])
-// }
-
-// model User {
-//   id        String @default(uuid())@unique @id
-//   email     String   @unique
-//   name      String?
-//   password  String
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   entry     Entry[]
-// }
-
 model User {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -68,12 +46,13 @@ model Analysis {
   updatedAt DateTime @updatedAt
 
   entryId String
-  entry   JournalEntry @relation(fields: [entryId], references: [id])
+  entry   JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
   mood     String
   summary  String  @db.Text
   color    String
   negative Boolean
+  subject String
 
   @@unique([entryId])
 }
