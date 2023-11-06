@@ -20,6 +20,16 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Features
+
+This project uses the following features:
+AI generated content using [GPT-3](https://openai.com/blog/openai-api/), [OpenAI](https://openai.com/)'s new API for accessing new AI models developed by OpenAI.
+
+## How to use
+
+To use this project, you need to have an OpenAI account and an API key. You can sign up for an account [here](https://beta.openai.com/). Once you have an account, you can get an API key [here](https://beta.openai.com/account/api-keys).
+
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

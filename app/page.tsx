@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { auth } from '@clerk/nextjs'
 
@@ -7,9 +6,6 @@ export default async function Home() {
   const {userId} = await auth()
 
   let href = userId ? '/journal' : '/new-user'
-  // if (userId) {
-  //   href = '/journal'
-  // }
 
   return (
     <div className='w-screen h-screen bg-black flex justify-center items-center text-white'>
