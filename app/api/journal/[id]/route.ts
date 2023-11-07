@@ -1,13 +1,13 @@
 // This route is used to update an existing journal entry
 
+import { update } from "@/utils/actions"
 import { analyze } from "@/utils/ai"
 import { getUserByClerkID } from "@/utils/auth"
 import { prisma } from "@/utils/db"
-import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
 //  Patch is used to update an existing resource
-export const PATCH = async (request, {params}) => {
+export const PATCH = async (request, { params }) => {
     const { content } = await request.json()
     const user = await getUserByClerkID()
     const updatedEntry = await prisma.journalEntry.update({
@@ -37,5 +37,25 @@ export const PATCH = async (request, {params}) => {
         update: analysis,
     })
 
-    return NextResponse.json({ data: {...updatedEntry, analysis: updated} })
+    update([`/journal`])
+
+    return NextResponse.json({ data: { ...updatedEntry, analysis: updated } })
+}
+
+
+export const DELETE = async (request: Request, { params }) => {
+    const user = await getUserByClerkID()
+
+    await prisma.journalEntry.delete({
+        where: {
+            userId_id: {
+                id: params.id,
+                userId: user.id,
+            },
+        },
+    })
+
+    update(['/journal'])
+
+    return NextResponse.json({ data: { id: params.id } })
 }
