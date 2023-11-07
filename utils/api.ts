@@ -14,6 +14,9 @@ export const updatedEntry = async (id, content) => {
     if (res.ok) {
         const data = await res.json()
         return data.data
+    } else {
+        const data = await res.json()
+        throw new Error('Something went wrong on API server.', data.message)
     }
 
 }
@@ -27,6 +30,9 @@ export const createNewEntry = async () => {
     if (res.ok) {
         const data = await res.json()
         return data.data
+    } else {
+        const data = await res.json()
+        throw new Error('Something went wrong on API server.', data.message)
     }
 }
 
@@ -40,6 +46,9 @@ export const askQuestion = async question => {
     if (res.ok) {
         const data = await res.json()
         return data.data
+    } else {
+        const data = await res.json()
+        throw new Error('Something went wrong on API server.', data.message)
     }
 }
 
@@ -51,5 +60,8 @@ export const deleteEntry = async (id) => {
     if (res.ok) {
         const data = await res.json()
         return data.data
+    } else {
+        const data = await res.json()
+        throw new Error('Something went wrong on API server.', data.message)
     }
 }
