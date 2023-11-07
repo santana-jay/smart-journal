@@ -1,5 +1,5 @@
 import { deleteEntry } from "@/utils/api"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
 //  This component is used to display the content of the entry
 
@@ -11,8 +11,8 @@ const EntryCard = ({entry}: any) => {
     const handleDelete = async () => {
         await deleteEntry(entry.id);
         // Refresh the page
-        router.reload();
-    };
+        router.refresh()
+    }
 
     return (
         <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
