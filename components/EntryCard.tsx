@@ -6,9 +6,9 @@ const EntryCard = ({entry}) => {
 
     return (
         <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
-            <div className="px-4 py-5 sm:px-6">{date}</div>
-            <div className="px-4 py-5 sm:px-6">Summary: {analysis.summary}</div>
-            <div className="px-4 py-5 sm:px-6">Mood: {analysis.mood}</div>
+            <div className="px-4 py-5 sm:px-6"><b>{date}</b></div>
+            <div className="px-4 py-5 sm:px-6"><b>Summary:</b> {analysis.summary}</div>
+            <div className="px-4 py-5 sm:px-6"><b>Mood:</b> {analysis.mood}</div>
         </div>
         )
 }
