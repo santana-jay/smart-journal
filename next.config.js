@@ -7,6 +7,9 @@ const nextConfig = {
         ignoreDuringBuilds: true,
         ignoreDuringBuilds: true,
     },
+    // experimental: {
+    //     urlImports: ['/journal'],
+    // },
 }
 
 module.exports = nextConfig

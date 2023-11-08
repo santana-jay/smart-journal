@@ -10,6 +10,7 @@ import { NextResponse } from "next/server"
 export const PATCH = async (request, { params }) => {
     const { content } = await request.json()
     const user = await getUserByClerkID()
+
     const updatedEntry = await prisma.journalEntry.update({
         where: {
             userId_id: {
@@ -37,8 +38,6 @@ export const PATCH = async (request, { params }) => {
         update: analysis,
     })
 
-    update([`/journal`])
-
     return NextResponse.json({ data: { ...updatedEntry, analysis: updated } })
 }
 
@@ -49,8 +48,8 @@ export const DELETE = async (request: Request, { params }) => {
     await prisma.journalEntry.delete({
         where: {
             userId_id: {
-                id: params.id,
                 userId: user.id,
+                id: params.id,
             },
         },
     })
