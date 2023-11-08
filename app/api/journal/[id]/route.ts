@@ -38,6 +38,8 @@ export const PATCH = async (request, { params }) => {
         update: analysis,
     })
 
+    update(['/journal'])
+
     return NextResponse.json({ data: { ...updatedEntry, analysis: updated } })
 }
 
