@@ -17,6 +17,7 @@ const getEntry = async (id: string) => {
             analysis: true,
         }
     })
+    console.log('entry: ', entry)
     return entry
 }
 
