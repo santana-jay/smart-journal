@@ -1,7 +1,7 @@
 import { SignUp } from "@clerk/nextjs";
 
 const SignUpPage = () => {
-    return <SignUp afterSignUpUrl='/new-user' redirectUrl='/new-user' />;
+    return <SignUp afterSignUpUrl='/journal' redirectUrl='/journal' />;
 }
 
 export default SignUpPage;
